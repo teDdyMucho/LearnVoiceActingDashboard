@@ -25,29 +25,29 @@ export const productFilters: ProductFilter[] = [
 
 export const globalMetrics: GlobalMetrics = {
   mtdRevenue: 60000,
-  activeSubscriptions: 135,
-  activePaymentPlans: 20,
+  activeSubscriptions: 77,
+  activePaymentPlans: 62,
   churnRate: 3.2,
   newCustomers: 89,
-  newPaymentPlansStarted: 12,
-  newPaymentPlansRevenue: 18000,
-  subscriptionNetChange: 8
+  newPaymentPlansStarted: 30,
+  newPaymentPlansRevenue: 23800,
+  subscriptionNetChange: 9
 };
 
 export const subscriptionBreakdown: SubscriptionBreakdown = {
-  newSubs: 25,
-  recurringBills: 110,
-  cancellations: 17,
+  newSubs: 14,
+  recurringBills: 63,
+  cancellations: 5,
   churnRate: 3.2,
-  subscriptionRevenue: 27000
+  subscriptionRevenue: 14700
 };
 
 export const paymentPlanBreakdown: PaymentPlanBreakdown = {
-  newPlansStarted: 12,
-  newPlansRevenue: 18000,
-  continuingInstallments: 28,
-  continuingRevenue: 15000,
-  paymentPlanRevenue: 33000
+  newPlansStarted: 30,
+  newPlansRevenue: 23800,
+  continuingInstallments: 44,
+  continuingRevenue: 17100,
+  paymentPlanRevenue: 40900
 };
 
 export const products: Product[] = [
@@ -86,11 +86,14 @@ export const products: Product[] = [
   },
   {
     name: 'Masterclass Bundle',
-    type: 'one_time',
+    type: 'payment_plan',
     mtdRevenue: 12000,
     transactions: 20,
     newCustomers: 18,
-    aov: 600
+    newPlansStarted: 18,
+    newPlansRevenue: 7200,
+    continuingInstallments: 2,
+    continuingRevenue: 4800
   },
   {
     name: 'Add-On Products',
@@ -102,14 +105,14 @@ export const products: Product[] = [
   },
   {
     name: 'Pandora\'s VOX',
-    type: 'subscription',
+    type: 'payment_plan',
     mtdRevenue: 2100,
     transactions: 18,
-    activeSubs: 15,
-    newSubs: 4,
-    recurringBills: 11,
-    cancellations: 1,
-    churnRate: 2.5
+    newCustomers: 4,
+    newPlansStarted: 4,
+    newPlansRevenue: 800,
+    continuingInstallments: 14,
+    continuingRevenue: 1300
   },
   {
     name: 'Talent Accelerator',
@@ -169,8 +172,8 @@ export const transactionData: TransactionData[] = [
     date: '2024-12-03',
     orderId: 'ORD-003',
     productName: 'Masterclass Bundle',
-    productType: 'one_time',
-    eventType: 'one_time',
+    productType: 'payment_plan',
+    eventType: 'pp_new',
     amount: 597,
     customerId: 'CUST-003',
     normalizedEmail: 'mike.johnson@email.com',
@@ -229,8 +232,8 @@ export const transactionData: TransactionData[] = [
     date: '2024-12-08',
     orderId: 'ORD-008',
     productName: 'Pandora\'s VOX',
-    productType: 'subscription',
-    eventType: 'sub_new',
+    productType: 'payment_plan',
+    eventType: 'pp_new',
     amount: 97,
     customerId: 'CUST-008',
     normalizedEmail: 'emily.davis@email.com',
