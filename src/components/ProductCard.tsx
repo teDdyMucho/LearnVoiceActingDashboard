@@ -56,11 +56,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) =>
         <p className="text-xs text-green-600 font-medium mb-1">Transactions</p>
         <p className="text-lg font-bold text-green-900">{product.transactions}</p>
       </div>
+      <div className="bg-purple-50 rounded-lg p-3">
+        <p className="text-xs text-purple-600 font-medium mb-1">New Customers</p>
+        <p className="text-lg font-bold text-purple-900">{product.newCustomers}</p>
+      </div>
       <div className="bg-emerald-50 rounded-lg p-3">
         <p className="text-xs text-emerald-600 font-medium mb-1">New Plans</p>
         <p className="text-sm font-bold text-emerald-900">{product.newPlansStarted}</p>
         <p className="text-xs text-emerald-700">{formatCurrency(product.newPlansRevenue || 0)}</p>
       </div>
+    </div>
+  );
+
+  const renderPaymentPlanTilesSecondRow = () => (
+    <div className="grid grid-cols-1 gap-3 mt-3">
       <div className="bg-amber-50 rounded-lg p-3">
         <p className="text-xs text-amber-600 font-medium mb-1">Installments</p>
         <p className="text-sm font-bold text-amber-900">{product.continuingInstallments}</p>
@@ -103,7 +112,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) =>
       </div>
       
       {product.type === 'subscription' && renderSubscriptionTiles()}
-      {product.type === 'payment_plan' && renderPaymentPlanTiles()}
+      {product.type === 'payment_plan' && (
+        <>
+          {renderPaymentPlanTiles()}
+          {renderPaymentPlanTilesSecondRow()}
+        </>
+      )}
       {product.type === 'one_time' && renderOneTimeTiles()}
     </div>
   );

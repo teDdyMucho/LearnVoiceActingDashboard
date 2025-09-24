@@ -10,7 +10,6 @@ export const exportTransactionsToCSV = (transactions: TransactionData[], dateRan
     'amount',
     'customer_id',
     'normalized_email',
-    'plan_name',
     'source_platform',
     'funnel_label'
   ];
@@ -26,7 +25,6 @@ export const exportTransactionsToCSV = (transactions: TransactionData[], dateRan
       transaction.amount,
       transaction.customerId,
       transaction.normalizedEmail,
-      transaction.planName || '',
       transaction.sourcePlatform,
       `"${transaction.funnelLabel}"`
     ].join(','))

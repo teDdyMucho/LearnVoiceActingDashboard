@@ -48,54 +48,30 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   };
 
   const renderPaymentPlanBreakdown = () => {
-    if (product.type !== 'payment_plan' || !product.plans) return null;
+    if (product.type !== 'payment_plan') return null;
 
     return (
       <div className="mb-6">
-        <h4 className="text-lg font-semibold text-gray-900 mb-4">Plan Breakdown</h4>
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Plan Name
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  New Starts
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Installments
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Revenue (New)
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Revenue (Installments)
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {product.plans.map((plan, index) => (
-                <tr key={index}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {plan.name}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {plan.newStarts}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {plan.installments}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {formatCurrency(plan.revenueNew)}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {formatCurrency(plan.revenueInstallments)}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <h4 className="text-lg font-semibold text-gray-900 mb-4">Payment Plan Summary</h4>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="bg-blue-50 rounded-lg p-4 text-center">
+            <p className="text-xs text-blue-600 font-medium mb-2">New Plans Started</p>
+            <p className="text-lg font-bold text-blue-900">{product.newPlansStarted}</p>
+            <p className="text-sm text-blue-700">{formatCurrency(product.newPlansRevenue || 0)}</p>
+          </div>
+          <div className="bg-amber-50 rounded-lg p-4 text-center">
+            <p className="text-xs text-amber-600 font-medium mb-2">Continuing Installments</p>
+            <p className="text-lg font-bold text-amber-900">{product.continuingInstallments}</p>
+            <p className="text-sm text-amber-700">{formatCurrency(product.continuingRevenue || 0)}</p>
+          </div>
+          <div className="bg-green-50 rounded-lg p-4 text-center">
+            <p className="text-xs text-green-600 font-medium mb-2">Total Transactions</p>
+            <p className="text-lg font-bold text-green-900">{product.transactions}</p>
+          </div>
+          <div className="bg-purple-50 rounded-lg p-4 text-center">
+            <p className="text-xs text-purple-600 font-medium mb-2">New Customers</p>
+            <p className="text-lg font-bold text-purple-900">{product.newCustomers}</p>
+          </div>
         </div>
       </div>
     );
@@ -169,11 +145,6 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Amount
                     </th>
-                    {product.type === 'payment_plan' && (
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Plan
-                      </th>
-                    )}
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -191,11 +162,6 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                         {transaction.amount > 0 ? formatCurrency(transaction.amount) : '-'}
                       </td>
-                      {product.type === 'payment_plan' && (
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                          {transaction.planName || '-'}
-                        </td>
-                      )}
                     </tr>
                   ))}
                 </tbody>

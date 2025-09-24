@@ -64,7 +64,6 @@ export interface TransactionData {
   amount: number;
   customerId: string;
   normalizedEmail: string;
-  planName?: string;
   sourcePlatform: 'GHL' | 'Hyros' | 'OCR';
   funnelLabel: string;
 }

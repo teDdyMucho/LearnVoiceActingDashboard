@@ -50,23 +50,17 @@ export const paymentPlanBreakdown: PaymentPlanBreakdown = {
   paymentPlanRevenue: 33000
 };
 
-const voiceActingAcademyPlans: PaymentPlan[] = [
-  { name: '3-Pay Plan', newStarts: 3, installments: 8, revenueNew: 7500, revenueInstallments: 6000 },
-  { name: '4-Pay Plan', newStarts: 2, installments: 6, revenueNew: 5000, revenueInstallments: 4500 },
-  { name: '6-Pay Plan', newStarts: 1, installments: 4, revenueNew: 2500, revenueInstallments: 2000 }
-];
-
 export const products: Product[] = [
   {
     name: 'Voice Acting Academy',
     type: 'payment_plan',
     mtdRevenue: 25500,
     transactions: 24,
+    newCustomers: 6,
     newPlansStarted: 6,
     newPlansRevenue: 15000,
     continuingInstallments: 18,
-    continuingRevenue: 10500,
-    plans: voiceActingAcademyPlans
+    continuingRevenue: 10500
   },
   {
     name: 'LevelUp Lab',
@@ -122,6 +116,7 @@ export const products: Product[] = [
     type: 'payment_plan',
     mtdRevenue: 1500,
     transactions: 8,
+    newCustomers: 2,
     newPlansStarted: 2,
     newPlansRevenue: 800,
     continuingInstallments: 6,
@@ -155,7 +150,6 @@ export const transactionData: TransactionData[] = [
     amount: 2500,
     customerId: 'CUST-001',
     normalizedEmail: 'john.smith@email.com',
-    planName: '3-Pay Plan',
     sourcePlatform: 'GHL',
     funnelLabel: 'Main Academy Funnel'
   },
@@ -192,7 +186,6 @@ export const transactionData: TransactionData[] = [
     amount: 833,
     customerId: 'CUST-004',
     normalizedEmail: 'sarah.wilson@email.com',
-    planName: '3-Pay Plan',
     sourcePlatform: 'GHL',
     funnelLabel: 'Main Academy Funnel'
   },
@@ -253,7 +246,6 @@ export const transactionData: TransactionData[] = [
     amount: 400,
     customerId: 'CUST-009',
     normalizedEmail: 'chris.martinez@email.com',
-    planName: '4-Pay Plan',
     sourcePlatform: 'Hyros',
     funnelLabel: 'Talent Accelerator Program'
   },
