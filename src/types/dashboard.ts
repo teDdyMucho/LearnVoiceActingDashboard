@@ -64,6 +64,11 @@ export interface TransactionData {
   amount: number;
   customerId: string;
   normalizedEmail: string;
+  customerName?: string;
+  qty?: number;
+  priceName?: string;
+  unitPrice?: number;
+  totalPrice?: number;
   sourcePlatform: 'GHL' | 'Hyros' | 'OCR';
   funnelLabel: string;
 }

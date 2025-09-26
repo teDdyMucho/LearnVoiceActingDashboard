@@ -140,10 +140,19 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                       Customer
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Qty
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Price Name
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Unit Price
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Event
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Amount
+                      Total
                     </th>
                   </tr>
                 </thead>
@@ -154,13 +163,26 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                         {formatDate(transaction.date)}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {transaction.normalizedEmail}
+                        {transaction.customerName || transaction.normalizedEmail}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        {typeof transaction.qty === 'number' ? transaction.qty : (transaction.qty ? Number(transaction.qty) : 1)}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        {transaction.priceName || '-'}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        {typeof transaction.unitPrice === 'number' && transaction.unitPrice > 0 ? formatCurrency(transaction.unitPrice) : '-'}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                         {getEventTypeLabel(transaction.eventType)}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {transaction.amount > 0 ? formatCurrency(transaction.amount) : '-'}
+                        {typeof transaction.totalPrice === 'number' && transaction.totalPrice > 0
+                          ? formatCurrency(transaction.totalPrice)
+                          : transaction.amount > 0
+                            ? formatCurrency(transaction.amount)
+                            : '-'}
                       </td>
                     </tr>
                   ))}
@@ -172,4 +194,5 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
       </div>
     </div>
   );
-};
+}
+;
